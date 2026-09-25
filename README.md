@@ -11,3 +11,12 @@ I go through the list once and use a dictionary to remember the index of each nu
 
 **Time complexity:** O(n) on average, with constant-time dictionary lookups.  
 **Space complexity:** O(n) for the dictionary.
+
+### 2149. Rearrange Array Elements by Sign
+
+[View my Python solution](solutions/2149_rearrange_array_elements_by_sign.py)
+
+I make one pass through the array, collecting positive and negative numbers into separate lists in their original order. Then I write them back to `nums` alternately: a positive number at each even index and a negative number at the following odd index. Finally, I return the rearranged array.
+
+**Time complexity:** O(n) for the two passes through the elements.  
+**Space complexity:** O(n) for the positive and negative lists.
