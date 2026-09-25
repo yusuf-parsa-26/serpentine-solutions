@@ -20,3 +20,57 @@ I make one pass through the array, collecting positive and negative numbers into
 
 **Time complexity:** O(n) for the two passes through the elements.  
 **Space complexity:** O(n) for the positive and negative lists.
+
+### 53. Maximum Subarray
+
+[View my Python solution](solutions/0053_maximum_subarray.py)
+
+I add each number to a running subarray sum and update the best sum before resetting a negative running sum to zero. This lets a new subarray start at the next number while still handling an array containing only negative numbers.
+
+**Time complexity:** O(n).  
+**Space complexity:** O(1).
+
+### 485. Max Consecutive Ones
+
+[View my Python solution](solutions/0485_max_consecutive_ones.py)
+
+I move `right` through the array and count the current streak of ones. At a zero, I reset the streak and move `left` past that zero. I keep the largest streak seen.
+
+**Time complexity:** O(n).  
+**Space complexity:** O(1).
+
+### 189. Rotate Array
+
+[View my Python solution](solutions/0189_rotate_array.py)
+
+I reduce `k` modulo the array length, reverse the whole array, then reverse the first `k` elements and the remaining elements separately. The three reversals rotate the array in place.
+
+**Time complexity:** O(n).  
+**Space complexity:** O(1).
+
+### 125. Valid Palindrome
+
+[View my Python solution](solutions/0125_valid_palindrome.py)
+
+I use pointers at both ends, skip characters that are not letters or digits, and compare the remaining characters without case sensitivity. I return false at the first mismatch.
+
+**Time complexity:** O(n).  
+**Space complexity:** O(1).
+
+### 14. Longest Common Prefix
+
+[View my Python solution](solutions/0014_longest_common_prefix.py)
+
+I check each character of the first string against the same position in every other string. I add it to the prefix only if all strings match there, and stop at the first mismatch or a shorter string.
+
+**Time complexity:** O(mL + L²) in the worst case, where `m` is the number of strings and `L` is the first string's length; repeated Python string concatenation can copy the growing prefix.  
+**Space complexity:** O(L) for the returned prefix.
+
+### 88. Merge Sorted Array
+
+[View my Python solution](solutions/0088_merge_sorted_array.py)
+
+I compare the last unmerged elements of `nums1` and `nums2`, writing the larger one into the last open slot of `nums1`. When `nums1`'s original elements are exhausted, I copy any remaining elements of `nums2` into the front.
+
+**Time complexity:** O(m + n).  
+**Space complexity:** O(1).
