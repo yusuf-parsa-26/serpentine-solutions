@@ -74,3 +74,21 @@ I compare the last unmerged elements of `nums1` and `nums2`, writing the larger 
 
 **Time complexity:** O(m + n).  
 **Space complexity:** O(1).
+
+### 507. Perfect Number
+
+[View my Python solution](solutions/0507_perfect_number.py)
+
+I start the divisor sum at 1, then check potential divisors only up to the square root of `num`. Whenever I find a divisor, I add it and its paired divisor, counting a square root only once. Finally, I compare the sum with `num`.
+
+**Time complexity:** O(√n), where `n` is `num`.  
+**Space complexity:** O(1).
+
+### 387. First Unique Character in a String
+
+[View my Python solution](solutions/0387_first_unique_character_in_a_string.py)
+
+I first count how often each character appears using a dictionary. I scan the string again from left to right and return the first index whose character has a count of one. If there is none, I return -1.
+
+**Time complexity:** O(n) on average, where `n` is the string length.  
+**Space complexity:** O(u) for the dictionary, where `u` is the number of distinct characters (at most O(n)).
