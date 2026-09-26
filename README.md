@@ -92,3 +92,39 @@ I first count how often each character appears using a dictionary. I scan the st
 
 **Time complexity:** O(n) on average, where `n` is the string length.  
 **Space complexity:** O(u) for the dictionary, where `u` is the number of distinct characters (at most O(n)).
+
+### 15. 3Sum
+
+[View my Python solution](solutions/0015_3sum.py)
+
+I sort the numbers, fix one number at a time, and use two pointers to find the other two. I move a pointer according to the sum and skip repeated values to avoid duplicate triplets.
+
+**Time complexity:** O(n²), including sorting.  
+**Space complexity:** O(n) auxiliary space for Python's in-place sort in the worst case; O(n²) including the returned triplets.
+
+### 54. Spiral Matrix
+
+[View my Python solution](solutions/0054_spiral_matrix.py)
+
+I track the four boundaries of the unvisited area and read its top row, right column, bottom row, and left column. Then I move the boundaries inward and repeat.
+
+**Time complexity:** O(mn), where `m` and `n` are the matrix dimensions.  
+**Space complexity:** O(mn) for the returned list; O(1) auxiliary space beyond it.
+
+### 48. Rotate Image
+
+[View my Python solution](solutions/0048_rotate_image.py)
+
+I transpose the square matrix by swapping cells across the main diagonal, then reverse each row to rotate it 90° clockwise in place.
+
+**Time complexity:** O(n²) for an `n × n` matrix.  
+**Space complexity:** O(1) auxiliary space.
+
+### 128. Longest Consecutive Sequence
+
+[View my Python solution](solutions/0128_longest_consecutive_sequence.py)
+
+I put all numbers in a set. I start counting only from numbers with no predecessor, follow each consecutive run, and keep the longest length.
+
+**Time complexity:** O(n) on average with hash-set lookups.  
+**Space complexity:** O(n) for the set.
