@@ -128,3 +128,48 @@ I put all numbers in a set. I start counting only from numbers with no predecess
 
 **Time complexity:** O(n) on average with hash-set lookups.  
 **Space complexity:** O(n) for the set.
+
+### 77. Combinations
+
+[View my Python solution](solutions/0077_combinations.py)
+
+I build combinations in increasing order, recurse from the next number, and undo each choice. When the combination reaches length `k`, I save a copy.
+
+**Time complexity:** O(∑₍d=0₎ᵏ C(n,d) + k·C(n,k)), counting all explored partial combinations and result copies; C(a,b) is the binomial coefficient.  
+**Space complexity:** O(k) auxiliary space; O(k·C(n,k)) including the results.
+
+### 39. Combination Sum
+
+[View my Python solution](solutions/0039_combination_sum.py)
+
+I either include the current candidate and keep its index to allow reuse, or remove it and advance to the next candidate. I save a copy when the sum reaches the target and stop branches that exceed it.
+
+**Time complexity:** O(C(m+D+1,m) + R·D) as a worst-case upper bound, where `m` is the candidate count, `D = floor(target / min(candidates))`, `R` is the number of results, and C(a,b) is the binomial coefficient.  
+**Space complexity:** O(m+D) auxiliary space; O(m+D+R·D) including the results.
+
+### 22. Generate Parentheses
+
+[View my Python solution](solutions/0022_generate_parentheses.py)
+
+I recursively fill a buffer with opening or closing brackets while tracking their balance. I prune negative balances or balances above `n`, and save complete strings only when the balance is zero.
+
+**Time complexity:** O(n·Cₙ), where Cₙ = C(2n,n)/(n+1) is the nth Catalan number, including string construction.  
+**Space complexity:** O(n) auxiliary space; O(n·Cₙ) including the results.
+
+### 90. Subsets II
+
+[View my Python solution](solutions/0090_subsets_ii.py)
+
+I sort the numbers and explore including or excluding each value. After undoing an inclusion, I skip equal values before the exclusion branch to avoid duplicate subsets.
+
+**Time complexity:** O(n·2ⁿ) in the worst case, including sorting and subset copies.  
+**Space complexity:** O(n) auxiliary space; O(n·2ⁿ) including the results in the worst case.
+
+### 78. Subsets
+
+[View my Python solution](solutions/0078_subsets.py)
+
+I explore including and excluding each number, undoing the inclusion before the exclusion branch. At the end of the array, I save a copy of the current subset.
+
+**Time complexity:** O(n·2ⁿ), including subset copies.  
+**Space complexity:** O(n) auxiliary space; O(n·2ⁿ) including the results.
