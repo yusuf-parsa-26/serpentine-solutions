@@ -173,3 +173,147 @@ I explore including and excluding each number, undoing the inclusion before the 
 
 **Time complexity:** O(n·2ⁿ), including subset copies.  
 **Space complexity:** O(n) auxiliary space; O(n·2ⁿ) including the results.
+
+### 206. Reverse Linked List
+
+[View my Python solution](solutions/0206_reverse_linked_list.py)
+
+I recursively reverse the rest of the list, point the next node back to the current node, and remove the old forward link. I return the new head.
+
+**Time complexity:** O(n), where `n` is the number of nodes.  
+**Space complexity:** O(n) for the recursion stack.
+
+### 876. Middle of the Linked List
+
+[View my Python solution](solutions/0876_middle_of_the_linked_list.py)
+
+I move a slow pointer one node and a fast pointer two nodes at a time. When the fast pointer reaches the end, the slow pointer is at the middle, choosing the second middle for an even-length list.
+
+**Time complexity:** O(n), where `n` is the number of nodes.  
+**Space complexity:** O(1).
+
+### 153. Find Minimum in Rotated Sorted Array
+
+[View my Python solution](solutions/0153_find_minimum_in_rotated_sorted_array.py)
+
+I compare the middle value with the rightmost value to identify the sorted half. I record the middle value as a possible minimum and continue searching the half that can contain a smaller value.
+
+**Time complexity:** O(log n), where `n` is the array length.  
+**Space complexity:** O(1).
+
+### 81. Search in Rotated Sorted Array II
+
+[View my Python solution](solutions/0081_search_in_rotated_sorted_array_ii.py)
+
+I use binary search, identify a sorted half, and keep the half whose range can contain the target. If the left, middle, and right values are equal, I shrink both boundaries to handle duplicates.
+
+**Time complexity:** O(n) in the worst case because duplicates can force one-step boundary reductions; O(log n) when each iteration can discard a half.  
+**Space complexity:** O(1).
+
+### 33. Search in Rotated Sorted Array
+
+[View my Python solution](solutions/0033_search_in_rotated_sorted_array.py)
+
+I identify which half is sorted, check whether the target lies within its range, and discard the other half. I return the matching index or -1.
+
+**Time complexity:** O(log n), where `n` is the array length.  
+**Space complexity:** O(1).
+
+### 35. Search Insert Position
+
+[View my Python solution](solutions/0035_search_insert_position.py)
+
+I use binary search to find the first index whose value is at least the target. I save each possible position and search left; if none exists, I return the array length.
+
+**Time complexity:** O(log n), where `n` is the array length.  
+**Space complexity:** O(1).
+
+### 18. 4Sum
+
+[View my Python solution](solutions/0018_4sum.py)
+
+I sort the array, fix two numbers, and use two pointers to find the remaining pair. I skip repeated values to avoid duplicate quadruplets.
+
+**Time complexity:** O(n³), including sorting, where `n` is the array length.  
+**Space complexity:** O(n) auxiliary space for Python's sort in the worst case; O(n + q) including `q` returned quadruplets.
+
+### 704. Binary Search
+
+[View my Python solution](solutions/0704_binary_search.py)
+
+I compare the middle value with the target and discard the half that cannot contain it. I return the matching index or -1 when the search range is empty.
+
+**Time complexity:** O(log n), where `n` is the array length.  
+**Space complexity:** O(1).
+
+### 867. Transpose Matrix
+
+[View my Python solution](solutions/0867_transpose_matrix.py)
+
+I create a new matrix with the row and column counts exchanged, then copy each value from position `[i][j]` to `[j][i]`.
+
+**Time complexity:** O(mn), where `m` and `n` are the matrix dimensions.  
+**Space complexity:** O(mn) for the returned matrix; O(1) auxiliary space beyond it.
+
+### 73. Set Matrix Zeroes
+
+[View my Python solution](solutions/0073_set_matrix_zeroes.py)
+
+I first record the rows and columns containing original zeroes in two sets. In a second pass, I set every cell in those rows or columns to zero.
+
+**Time complexity:** O(mn) on average with hash-set operations, where `m` and `n` are the matrix dimensions.  
+**Space complexity:** O(m + n) for the row and column sets.
+
+### 121. Best Time to Buy and Sell Stock
+
+[View my Python solution](solutions/0121_best_time_to_buy_and_sell_stock.py)
+
+I track the lowest buying price seen so far and update the best profit whenever a later price is higher. If no profitable trade exists, I return zero.
+
+**Time complexity:** O(n), where `n` is the number of prices.  
+**Space complexity:** O(1).
+
+### 268. Missing Number
+
+[View my Python solution](solutions/0268_missing_number.py)
+
+I sort the numbers, check whether zero is missing, then scan for the first gap in the expected sequence. If there is no gap, I return the array length.
+
+**Time complexity:** O(n log n) in the worst case, dominated by sorting.  
+**Space complexity:** O(n) auxiliary space for Python's sort in the worst case.
+
+### 283. Move Zeroes
+
+[View my Python solution](solutions/0283_move_zeroes.py)
+
+I collect nonzero values in their original order, copy them back to the front of the array, and fill the remaining positions with zeroes.
+
+**Time complexity:** O(n), where `n` is the array length.  
+**Space complexity:** O(n) in the worst case for the temporary list.
+
+### 26. Remove Duplicates from Sorted Array
+
+[View my Python solution](solutions/0026_remove_duplicates_from_sorted_array.py)
+
+I use a set to remove duplicates, convert the unique values to a list, and sort them. I copy that list into the front of `nums` and return its length.
+
+**Time complexity:** O(n + u log u) on average with hash-set operations, where `n` is the input length and `u` is the number of unique values.  
+**Space complexity:** O(u) for the set, list, and sorting memory.
+
+### 242. Valid Anagram
+
+[View my Python solution](solutions/0242_valid_anagram.py)
+
+I reject unequal lengths, count each string's character frequencies in separate dictionaries, and compare the dictionaries.
+
+**Time complexity:** O(n) on average with dictionary operations for equal-length strings of length `n`; O(1) when their lengths differ.  
+**Space complexity:** O(u) for distinct characters; O(1) under LeetCode's fixed lowercase English alphabet.
+
+### 9. Palindrome Number
+
+[View my Python solution](solutions/0009_palindrome_number.py)
+
+I reject negative numbers, reverse the digits using remainder and integer division, and compare the reversed number with the original.
+
+**Time complexity:** O(d), where `d` is the number of decimal digits, assuming constant-time bounded-integer arithmetic.  
+**Space complexity:** O(1) under LeetCode's bounded-integer constraints.
