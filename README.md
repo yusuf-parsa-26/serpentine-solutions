@@ -6,8 +6,9 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 
 | Number | Problem | Code |
 |---:|---|---|
-| 1 | [Two Sum](#1-two-sum) | [Python](solutions/0001_two_sum.py) |
+| 1 | [Two Sum](#1-two-sum) | [Hash map](solutions/0001_two_sum.py) · [Two pointers](solutions/0001_two_sum_two_pointers.py) |
 | 9 | [Palindrome Number](#9-palindrome-number) | [Python](solutions/0009_palindrome_number.py) |
+| 11 | [Container With Most Water](#11-container-with-most-water) | [Python](solutions/0011_container_with_most_water.py) |
 | 14 | [Longest Common Prefix](#14-longest-common-prefix) | [Python](solutions/0014_longest_common_prefix.py) |
 | 15 | [3Sum](#15-3sum) | [Python](solutions/0015_3sum.py) |
 | 18 | [4Sum](#18-4sum) | [Python](solutions/0018_4sum.py) |
@@ -40,6 +41,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 704 | [Binary Search](#704-binary-search) | [Python](solutions/0704_binary_search.py) |
 | 867 | [Transpose Matrix](#867-transpose-matrix) | [Python](solutions/0867_transpose_matrix.py) |
 | 876 | [Middle of the Linked List](#876-middle-of-the-linked-list) | [Python](solutions/0876_middle_of_the_linked_list.py) |
+| 1971 | [Find if Path Exists in Graph](#1971-find-if-path-exists-in-graph) | [Python](solutions/1971_find_if_path_exists_in_graph.py) |
 | 2149 | [Rearrange Array Elements by Sign](#2149-rearrange-array-elements-by-sign) | [Python](solutions/2149_rearrange_array_elements_by_sign.py) |
 
 ## Solutions
@@ -50,12 +52,25 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 
 **Question:** Given integer values in `nums` and a `target`, identify two different array positions whose values total the target. Return their indices in either order; exactly one valid pair is guaranteed.
 
+#### Solution 1: Hash map
+
 **My approach:**
 
 I go through the list once and use a dictionary to remember the index of each number I have seen. For each number, I calculate the complement needed to reach the target. If that complement is already in the dictionary, I return its saved index and the current index. Otherwise, I save the current number and its index. If no pair is found, the code returns `[-1,-1]`.
 
 **Time complexity:** O(n) on average, with constant-time dictionary lookups.  
 **Space complexity:** O(n) for the dictionary.
+
+#### Solution 2: Sorting and two pointers
+
+[View my alternative Python solution](solutions/0001_two_sum_two_pointers.py)
+
+**My approach:**
+
+I pair each value with its original index and sort those pairs by value. I move two pointers according to their sum and return the saved original indices when the sum matches the target.
+
+**Time complexity:** O(n log n) in the worst case, dominated by sorting.  
+**Space complexity:** O(n) for the value-index pairs and sorting memory.
 
 ### 9. Palindrome Number
 
@@ -69,6 +84,19 @@ I reject negative numbers, reverse the digits using remainder and integer divisi
 
 **Time complexity:** O(d), where `d` is the number of decimal digits, assuming constant-time bounded-integer arithmetic.  
 **Space complexity:** O(1) under LeetCode's bounded-integer constraints.
+
+### 11. Container With Most Water
+
+[Original LeetCode question](https://leetcode.com/problems/container-with-most-water/description/) · [View my Python solution](solutions/0011_container_with_most_water.py)
+
+**Question:** Given non-negative vertical-line heights in `height`, choose two different positions `i < j` that form an upright container with the x-axis. Return the greatest capacity, `min(height[i], height[j]) * (j - i)`; the lines cannot be tilted.
+
+**My approach:**
+
+I start with pointers at both ends, calculate the water area, and keep the largest area found. I move the pointer at the shorter line inward; when the heights are equal, I move both pointers.
+
+**Time complexity:** O(n), where `n` is the number of heights.  
+**Space complexity:** O(1).
 
 ### 14. Longest Common Prefix
 
@@ -485,6 +513,19 @@ I move a slow pointer one node and a fast pointer two nodes at a time. When the 
 
 **Time complexity:** O(n), where `n` is the number of nodes.  
 **Space complexity:** O(1).
+
+### 1971. Find if Path Exists in Graph
+
+[Original LeetCode question](https://leetcode.com/problems/find-if-path-exists-in-graph/description/) · [View my Python solution](solutions/1971_find_if_path_exists_in_graph.py)
+
+**Question:** Given an undirected graph with `n` vertices labeled 0 through `n - 1` and two-way connections in `edges`, determine whether `source` can reach `destination`. Return a boolean; a vertex is reachable from itself.
+
+**My approach:**
+
+I build an adjacency list containing both directions of every edge, then run iterative depth-first search from the source using a stack. I mark vertices when adding them to the stack and return true if I reach the destination.
+
+**Time complexity:** O(V + E) on average with hash-set operations, including building the graph, where `V = n` and `E` is the number of edges.  
+**Space complexity:** O(V + E) for the adjacency list, visited set, and stack.
 
 ### 2149. Rearrange Array Elements by Sign
 
