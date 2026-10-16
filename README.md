@@ -37,6 +37,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 242 | [Valid Anagram](#242-valid-anagram) | [Python](solutions/0242_valid_anagram.py) |
 | 268 | [Missing Number](#268-missing-number) | [Python](solutions/0268_missing_number.py) |
 | 283 | [Move Zeroes](#283-move-zeroes) | [Python](solutions/0283_move_zeroes.py) |
+| 349 | [Intersection of Two Arrays](#349-intersection-of-two-arrays) | [Python](solutions/0349_intersection_of_two_arrays.py) |
 | 387 | [First Unique Character in a String](#387-first-unique-character-in-a-string) | [Python](solutions/0387_first_unique_character_in_a_string.py) |
 | 485 | [Max Consecutive Ones](#485-max-consecutive-ones) | [Python](solutions/0485_max_consecutive_ones.py) |
 | 507 | [Perfect Number](#507-perfect-number) | [Python](solutions/0507_perfect_number.py) |
@@ -463,6 +464,19 @@ I collect nonzero values in their original order, copy them back to the front of
 
 **Time complexity:** O(n), where `n` is the array length.  
 **Space complexity:** O(n) in the worst case for the temporary list.
+
+### 349. Intersection of Two Arrays
+
+[Original LeetCode question](https://leetcode.com/problems/intersection-of-two-arrays/description/) · [View my Python solution](solutions/0349_intersection_of_two_arrays.py)
+
+**Question:** Return the distinct integer values shared by `nums1` and `nums2`. Include each common value only once; the result may be in any order.
+
+**My approach:**
+
+I build a set for each array to remove duplicates. I convert the second set to a list, check each value against the first set, and collect the common values.
+
+**Time complexity:** O(m + n) on average with hash-set operations, where `m` and `n` are the input lengths.  
+**Space complexity:** O(u + v) for the two sets, converted list, and result, where `u` and `v` are the distinct-value counts; O(m + n) in the worst case.
 
 ### 387. First Unique Character in a String
 
