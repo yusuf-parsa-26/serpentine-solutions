@@ -18,6 +18,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 35 | [Search Insert Position](#35-search-insert-position) | [Python](solutions/0035_search_insert_position.py) |
 | 39 | [Combination Sum](#39-combination-sum) | [Python](solutions/0039_combination_sum.py) |
 | 48 | [Rotate Image](#48-rotate-image) | [Python](solutions/0048_rotate_image.py) |
+| 49 | [Group Anagrams](#49-group-anagrams) | [Python](solutions/0049_group_anagrams.py) |
 | 53 | [Maximum Subarray](#53-maximum-subarray) | [Python](solutions/0053_maximum_subarray.py) |
 | 54 | [Spiral Matrix](#54-spiral-matrix) | [Python](solutions/0054_spiral_matrix.py) |
 | 73 | [Set Matrix Zeroes](#73-set-matrix-zeroes) | [Python](solutions/0073_set_matrix_zeroes.py) |
@@ -32,6 +33,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 153 | [Find Minimum in Rotated Sorted Array](#153-find-minimum-in-rotated-sorted-array) | [Python](solutions/0153_find_minimum_in_rotated_sorted_array.py) |
 | 189 | [Rotate Array](#189-rotate-array) | [Python](solutions/0189_rotate_array.py) |
 | 206 | [Reverse Linked List](#206-reverse-linked-list) | [Python](solutions/0206_reverse_linked_list.py) |
+| 217 | [Contains Duplicate](#217-contains-duplicate) | [Python](solutions/0217_contains_duplicate.py) |
 | 242 | [Valid Anagram](#242-valid-anagram) | [Python](solutions/0242_valid_anagram.py) |
 | 268 | [Missing Number](#268-missing-number) | [Python](solutions/0268_missing_number.py) |
 | 283 | [Move Zeroes](#283-move-zeroes) | [Python](solutions/0283_move_zeroes.py) |
@@ -215,6 +217,19 @@ I transpose the square matrix by swapping cells across the main diagonal, then r
 **Time complexity:** O(n²) for an `n × n` matrix.  
 **Space complexity:** O(1) auxiliary space.
 
+### 49. Group Anagrams
+
+[Original LeetCode question](https://leetcode.com/problems/group-anagrams/description/) · [View my Python solution](solutions/0049_group_anagrams.py)
+
+**Question:** Group the strings in `strs` so that words with identical character frequencies belong together. Include every input occurrence, including repeated or empty strings; the groups may be returned in any order.
+
+**My approach:**
+
+I sort each word's characters to create a dictionary key. Words with the same key go into the same list, then I collect those lists into the result.
+
+**Time complexity:** O(n + L log(k + 1)) on average with dictionary operations, where `n` is the string count, `L` is their total character count, and `k` is the maximum string length.  
+**Space complexity:** O(n + L) in the worst case for sorted keys, grouping lists, and sorting workspace. The returned groups hold references to the original strings.
+
 ### 53. Maximum Subarray
 
 [Original LeetCode question](https://leetcode.com/problems/maximum-subarray/description/) · [View my Python solution](solutions/0053_maximum_subarray.py)
@@ -396,6 +411,19 @@ I recursively reverse the rest of the list, point the next node back to the curr
 
 **Time complexity:** O(n), where `n` is the number of nodes.  
 **Space complexity:** O(n) for the recursion stack.
+
+### 217. Contains Duplicate
+
+[Original LeetCode question](https://leetcode.com/problems/contains-duplicate/description/) · [View my Python solution](solutions/0217_contains_duplicate.py)
+
+**Question:** Determine whether an integer array contains any repeated value. Return true as soon as a value occurs more than once, or false if all values are distinct.
+
+**My approach:**
+
+I scan the array while storing previously seen values in a set. If a value is already present, I return true; otherwise, I add it and continue.
+
+**Time complexity:** O(n) on average with hash-set operations, where `n` is the array length.  
+**Space complexity:** O(n) in the worst case for the set.
 
 ### 242. Valid Anagram
 
