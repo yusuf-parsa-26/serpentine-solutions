@@ -7,7 +7,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | Number | Problem | Code |
 |---:|---|---|
 | 1 | [Two Sum](#1-two-sum) | [Hash map](solutions/0001_two_sum.py) · [Two pointers](solutions/0001_two_sum_two_pointers.py) |
-| 3 | [Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters) | [Python](solutions/0003_longest_substring_without_repeating_characters.py) |
+| 3 | [Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters) | [Last-seen indices](solutions/0003_longest_substring_without_repeating_characters.py) · [Set](solutions/0003_longest_substring_without_repeating_characters_set.py) |
 | 9 | [Palindrome Number](#9-palindrome-number) | [Python](solutions/0009_palindrome_number.py) |
 | 11 | [Container With Most Water](#11-container-with-most-water) | [Python](solutions/0011_container_with_most_water.py) |
 | 14 | [Longest Common Prefix](#14-longest-common-prefix) | [Python](solutions/0014_longest_common_prefix.py) |
@@ -85,12 +85,25 @@ I pair each value with its original index and sort those pairs by value. I move 
 
 **Question:** Find the length of the longest contiguous part of `s` whose characters are all distinct. Letters, digits, symbols, and spaces all count as characters; an empty string gives length zero.
 
+#### Solution 1: Last-seen indices
+
 **My approach:**
 
 I store each character's most recent index. When a repeated character is inside the current window, I move the left boundary just past its previous occurrence, then update the longest length.
 
 **Time complexity:** O(n) on average with dictionary operations, where `n` is the string length.  
 **Space complexity:** O(u) for the dictionary, where `u` is the number of distinct characters encountered, at most `n`.
+
+#### Solution 2: Set and sliding window
+
+[View my alternative Python solution](solutions/0003_longest_substring_without_repeating_characters_set.py)
+
+**My approach:**
+
+I keep the current window's characters in a set. When the next character is already present, I remove characters from the left until that duplicate is gone, then update the longest length and add the new character.
+
+**Time complexity:** O(n) on average with hash-set operations: each character is added once and removed at most once.  
+**Space complexity:** O(u), where `u` is the number of distinct characters in the string, at most `n`; the set stores only the current window's characters.
 
 ### 9. Palindrome Number
 
