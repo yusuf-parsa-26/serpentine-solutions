@@ -7,6 +7,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | Number | Problem | Code |
 |---:|---|---|
 | 1 | [Two Sum](#1-two-sum) | [Hash map](solutions/0001_two_sum.py) · [Two pointers](solutions/0001_two_sum_two_pointers.py) |
+| 3 | [Longest Substring Without Repeating Characters](#3-longest-substring-without-repeating-characters) | [Python](solutions/0003_longest_substring_without_repeating_characters.py) |
 | 9 | [Palindrome Number](#9-palindrome-number) | [Python](solutions/0009_palindrome_number.py) |
 | 11 | [Container With Most Water](#11-container-with-most-water) | [Python](solutions/0011_container_with_most_water.py) |
 | 14 | [Longest Common Prefix](#14-longest-common-prefix) | [Python](solutions/0014_longest_common_prefix.py) |
@@ -34,11 +35,14 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 189 | [Rotate Array](#189-rotate-array) | [Python](solutions/0189_rotate_array.py) |
 | 206 | [Reverse Linked List](#206-reverse-linked-list) | [Python](solutions/0206_reverse_linked_list.py) |
 | 217 | [Contains Duplicate](#217-contains-duplicate) | [Python](solutions/0217_contains_duplicate.py) |
+| 239 | [Sliding Window Maximum](#239-sliding-window-maximum) | [Python](solutions/0239_sliding_window_maximum.py) |
 | 242 | [Valid Anagram](#242-valid-anagram) | [Python](solutions/0242_valid_anagram.py) |
 | 268 | [Missing Number](#268-missing-number) | [Python](solutions/0268_missing_number.py) |
 | 283 | [Move Zeroes](#283-move-zeroes) | [Python](solutions/0283_move_zeroes.py) |
 | 349 | [Intersection of Two Arrays](#349-intersection-of-two-arrays) | [Python](solutions/0349_intersection_of_two_arrays.py) |
 | 387 | [First Unique Character in a String](#387-first-unique-character-in-a-string) | [Python](solutions/0387_first_unique_character_in_a_string.py) |
+| 424 | [Longest Repeating Character Replacement](#424-longest-repeating-character-replacement) | [Python](solutions/0424_longest_repeating_character_replacement.py) |
+| 438 | [Find All Anagrams in a String](#438-find-all-anagrams-in-a-string) | [Python](solutions/0438_find_all_anagrams_in_a_string.py) |
 | 485 | [Max Consecutive Ones](#485-max-consecutive-ones) | [Python](solutions/0485_max_consecutive_ones.py) |
 | 507 | [Perfect Number](#507-perfect-number) | [Python](solutions/0507_perfect_number.py) |
 | 704 | [Binary Search](#704-binary-search) | [Python](solutions/0704_binary_search.py) |
@@ -74,6 +78,19 @@ I pair each value with its original index and sort those pairs by value. I move 
 
 **Time complexity:** O(n log n) in the worst case, dominated by sorting.  
 **Space complexity:** O(n) for the value-index pairs and sorting memory.
+
+### 3. Longest Substring Without Repeating Characters
+
+[Original LeetCode question](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) · [View my Python solution](solutions/0003_longest_substring_without_repeating_characters.py)
+
+**Question:** Find the length of the longest contiguous part of `s` whose characters are all distinct. Letters, digits, symbols, and spaces all count as characters; an empty string gives length zero.
+
+**My approach:**
+
+I store each character's most recent index. When a repeated character is inside the current window, I move the left boundary just past its previous occurrence, then update the longest length.
+
+**Time complexity:** O(n) on average with dictionary operations, where `n` is the string length.  
+**Space complexity:** O(u) for the dictionary, where `u` is the number of distinct characters encountered, at most `n`.
 
 ### 9. Palindrome Number
 
@@ -426,6 +443,21 @@ I scan the array while storing previously seen values in a set. If a value is al
 **Time complexity:** O(n) on average with hash-set operations, where `n` is the array length.  
 **Space complexity:** O(n) in the worst case for the set.
 
+### 239. Sliding Window Maximum
+
+[Original LeetCode question](https://leetcode.com/problems/sliding-window-maximum/description/) · [View my Python solution](solutions/0239_sliding_window_maximum.py)
+
+**Question:** For every consecutive block of `k` elements in `nums`, return its maximum value. Slide the block one position at a time from left to right, preserving that order in the result; `1 <= k <= len(nums)`.
+
+**My approach:**
+
+I store candidate indices in a deque with their values in non-increasing order. I remove smaller candidates from the back and expired indices from the front, then record the front value for each complete window.
+
+**Time complexity:** O(n), since each index enters and leaves the deque at most once.  
+**Space complexity:** O(k) auxiliary space for the deque; O(n) including the `n - k + 1` returned maxima.
+
+**Run note:** This snippet uses `collections.deque()`. Add `import collections` in the execution environment if it is not already available.
+
 ### 242. Valid Anagram
 
 [Original LeetCode question](https://leetcode.com/problems/valid-anagram/description/) · [View my Python solution](solutions/0242_valid_anagram.py)
@@ -490,6 +522,32 @@ I first count how often each character appears using a dictionary. I scan the st
 
 **Time complexity:** O(n) on average, where `n` is the string length.  
 **Space complexity:** O(u) for the dictionary, where `u` is the number of distinct characters (at most O(n)).
+
+### 424. Longest Repeating Character Replacement
+
+[Original LeetCode question](https://leetcode.com/problems/longest-repeating-character-replacement/description/) · [View my Python solution](solutions/0424_longest_repeating_character_replacement.py)
+
+**Question:** Given an uppercase English string `s`, find the longest contiguous substring that can be made entirely one letter by changing at most `k` characters. Return its length.
+
+**My approach:**
+
+I track character counts and the highest frequency seen while expanding a window. If its length minus that historical frequency exceeds `k`, I move the left boundary once. The tracked window length never decreases, so its final length gives the answer even though the final window itself need not be valid.
+
+**Time complexity:** O(n) on average with dictionary operations, where `n` is the string length.  
+**Space complexity:** O(1) under the fixed 26-letter uppercase English alphabet.
+
+### 438. Find All Anagrams in a String
+
+[Original LeetCode question](https://leetcode.com/problems/find-all-anagrams-in-a-string/description/) · [View my Python solution](solutions/0438_find_all_anagrams_in_a_string.py)
+
+**Question:** For lowercase English strings `s` and `p`, return every starting index of a substring of `s` containing exactly the same character frequencies as `p`. Include overlapping matches; the indices may be returned in any order.
+
+**My approach:**
+
+I count the letters in `p` and in a sliding window using two 26-element arrays. At each full window of length `len(p)`, I compare the arrays, save matching start indices, and remove the outgoing character before sliding forward.
+
+**Time complexity:** O(n + m), where `n = len(s)` and `m = len(p)`; each frequency comparison checks at most 26 entries. The early return when `m > n` takes O(1).  
+**Space complexity:** O(1) auxiliary space for the fixed frequency arrays; O(r + 1) including the result, where `r` is the number of matching indices.
 
 ### 485. Max Consecutive Ones
 
