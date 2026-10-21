@@ -35,21 +35,27 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 189 | [Rotate Array](#189-rotate-array) | [Python](solutions/0189_rotate_array.py) |
 | 206 | [Reverse Linked List](#206-reverse-linked-list) | [Python](solutions/0206_reverse_linked_list.py) |
 | 217 | [Contains Duplicate](#217-contains-duplicate) | [Python](solutions/0217_contains_duplicate.py) |
+| 238 | [Product of Array Except Self](#238-product-of-array-except-self) | [Python](solutions/0238_product_of_array_except_self.py) |
 | 239 | [Sliding Window Maximum](#239-sliding-window-maximum) | [Python](solutions/0239_sliding_window_maximum.py) |
 | 242 | [Valid Anagram](#242-valid-anagram) | [Python](solutions/0242_valid_anagram.py) |
 | 268 | [Missing Number](#268-missing-number) | [Python](solutions/0268_missing_number.py) |
 | 283 | [Move Zeroes](#283-move-zeroes) | [Python](solutions/0283_move_zeroes.py) |
+| 303 | [Range Sum Query - Immutable](#303-range-sum-query---immutable) | [Python](solutions/0303_range_sum_query_immutable.py) |
 | 349 | [Intersection of Two Arrays](#349-intersection-of-two-arrays) | [Python](solutions/0349_intersection_of_two_arrays.py) |
 | 387 | [First Unique Character in a String](#387-first-unique-character-in-a-string) | [Python](solutions/0387_first_unique_character_in_a_string.py) |
 | 424 | [Longest Repeating Character Replacement](#424-longest-repeating-character-replacement) | [Python](solutions/0424_longest_repeating_character_replacement.py) |
 | 438 | [Find All Anagrams in a String](#438-find-all-anagrams-in-a-string) | [Python](solutions/0438_find_all_anagrams_in_a_string.py) |
 | 485 | [Max Consecutive Ones](#485-max-consecutive-ones) | [Python](solutions/0485_max_consecutive_ones.py) |
 | 507 | [Perfect Number](#507-perfect-number) | [Python](solutions/0507_perfect_number.py) |
+| 560 | [Subarray Sum Equals K](#560-subarray-sum-equals-k) | [Python](solutions/0560_subarray_sum_equals_k.py) |
 | 704 | [Binary Search](#704-binary-search) | [Python](solutions/0704_binary_search.py) |
 | 867 | [Transpose Matrix](#867-transpose-matrix) | [Python](solutions/0867_transpose_matrix.py) |
 | 876 | [Middle of the Linked List](#876-middle-of-the-linked-list) | [Python](solutions/0876_middle_of_the_linked_list.py) |
 | 1971 | [Find if Path Exists in Graph](#1971-find-if-path-exists-in-graph) | [Python](solutions/1971_find_if_path_exists_in_graph.py) |
+| 2089 | [Find Target Indices After Sorting Array](#2089-find-target-indices-after-sorting-array) | [Python](solutions/2089_find_target_indices_after_sorting_array.py) |
 | 2149 | [Rearrange Array Elements by Sign](#2149-rearrange-array-elements-by-sign) | [Python](solutions/2149_rearrange_array_elements_by_sign.py) |
+| 3863 | [Minimum Operations to Sort a String](#3863-minimum-operations-to-sort-a-string) | [Python](solutions/3863_minimum_operations_to_sort_a_string.py) |
+| 3886 | [Sum of Sortable Integers](#3886-sum-of-sortable-integers) | [Python](solutions/3886_sum_of_sortable_integers.py) |
 
 ## Solutions
 
@@ -456,6 +462,19 @@ I scan the array while storing previously seen values in a set. If a value is al
 **Time complexity:** O(n) on average with hash-set operations, where `n` is the array length.  
 **Space complexity:** O(n) in the worst case for the set.
 
+### 238. Product of Array Except Self
+
+[Original LeetCode question](https://leetcode.com/problems/product-of-array-except-self/description/) · [View my Python solution](solutions/0238_product_of_array_except_self.py)
+
+**Question:** Return an array whose value at index `i` is the product of every input element except `nums[i]`. The algorithm must run in O(n) time without division and handle zeroes and negative values.
+
+**My approach:**
+
+I first store the product of all elements to the left of each index in the result array. I then traverse from right to left, multiplying each result by a running product of the elements to its right.
+
+**Time complexity:** O(n), where `n` is the array length.  
+**Space complexity:** O(1) auxiliary space beyond the O(n) output array.
+
 ### 239. Sliding Window Maximum
 
 [Original LeetCode question](https://leetcode.com/problems/sliding-window-maximum/description/) · [View my Python solution](solutions/0239_sliding_window_maximum.py)
@@ -509,6 +528,19 @@ I collect nonzero values in their original order, copy them back to the front of
 
 **Time complexity:** O(n), where `n` is the array length.  
 **Space complexity:** O(n) in the worst case for the temporary list.
+
+### 303. Range Sum Query - Immutable
+
+[Original LeetCode question](https://leetcode.com/problems/range-sum-query-immutable/description/) · [View my Python solution](solutions/0303_range_sum_query_immutable.py)
+
+**Question:** Implement `NumArray` for a non-empty integer array whose values remain fixed. Each `sumRange(left, right)` call must return the sum from `left` through `right`, including both endpoints, and the object must support multiple queries.
+
+**My approach:**
+
+I build cumulative sums once during initialization. For each query, I subtract the prefix ending just before `left` from the prefix ending at `right`, or use the latter directly when `left` is zero.
+
+**Time complexity:** O(n) to initialize; O(1) per query, where `n` is the array length.  
+**Space complexity:** O(n) for the stored prefix sums; O(1) extra space per query.
 
 ### 349. Intersection of Two Arrays
 
@@ -588,6 +620,21 @@ I start the divisor sum at 1, then check potential divisors only up to the squar
 **Time complexity:** O(√n), where `n` is `num`.  
 **Space complexity:** O(1).
 
+### 560. Subarray Sum Equals K
+
+[Original LeetCode question](https://leetcode.com/problems/subarray-sum-equals-k/description/) · [View my Python solution](solutions/0560_subarray_sum_equals_k.py)
+
+**Question:** Count all non-empty contiguous subarrays of `nums` whose elements total `k`. Values may be positive, negative, or zero, and overlapping subarrays count separately.
+
+**My approach:**
+
+I maintain the current prefix sum and a dictionary of previous prefix-sum frequencies, starting with the empty prefix sum zero. At each element, I add the frequency of `current sum - k` to the answer, then record the current sum.
+
+**Time complexity:** O(n) on average with dictionary operations, where `n` is the array length.  
+**Space complexity:** O(n) in the worst case for the prefix-sum frequency dictionary.
+
+**Run note:** The snippet uses `List[int]`. Provide `from typing import List` when running it in an environment that does not already define `List`.
+
 ### 704. Binary Search
 
 [Original LeetCode question](https://leetcode.com/problems/binary-search/description/) · [View my Python solution](solutions/0704_binary_search.py)
@@ -640,6 +687,19 @@ I build an adjacency list containing both directions of every edge, then run ite
 **Time complexity:** O(V + E) on average with hash-set operations, including building the graph, where `V = n` and `E` is the number of edges.  
 **Space complexity:** O(V + E) for the adjacency list, visited set, and stack.
 
+### 2089. Find Target Indices After Sorting Array
+
+[Original LeetCode question](https://leetcode.com/problems/find-target-indices-after-sorting-array/description/) · [View my Python solution](solutions/2089_find_target_indices_after_sorting_array.py)
+
+**Question:** Sort `nums` into non-decreasing order, then return all indices where the value equals `target`. List the indices in increasing order, or return an empty list if the target is absent.
+
+**My approach:**
+
+I sort the array and use binary search to find a matching middle index. On a match, I collect matching indices to its right within the remaining range, then continue searching to its left. Finally, I sort the collected indices.
+
+**Time complexity:** O(n log n) in the worst case, including sorting the input and the result. The right-side scans cover disjoint discarded ranges, so their total work is O(n).  
+**Space complexity:** O(n) in the worst case for Python's sorting memory and the collected/returned indices.
+
 ### 2149. Rearrange Array Elements by Sign
 
 [Original LeetCode question](https://leetcode.com/problems/rearrange-array-elements-by-sign/description/) · [View my Python solution](solutions/2149_rearrange_array_elements_by_sign.py)
@@ -652,3 +712,29 @@ I make one pass through the array, collecting positive and negative numbers into
 
 **Time complexity:** O(n) for the two passes through the elements.  
 **Space complexity:** O(n) for the positive and negative lists.
+
+### 3863. Minimum Operations to Sort a String
+
+[Original LeetCode question](https://leetcode.com/problems/minimum-operations-to-sort-a-string/description/) · [View my Python solution](solutions/3863_minimum_operations_to_sort_a_string.py)
+
+**Question:** In one operation, sort any contiguous substring of a lowercase English string `s`, except the whole string, into non-decreasing alphabetical order. Return the fewest operations needed to sort all of `s`, or -1 if it cannot be done.
+
+**My approach:**
+
+I return zero if the string is already sorted and -1 for an unsorted two-character string. Otherwise, I inspect the smallest and largest characters: a minimum at the start or maximum at the end needs one operation; either extreme inside needs two; the remaining case needs three.
+
+**Time complexity:** O(n), where `n` is the string length, for the ordering check, minimum/maximum scans, and interior scan.  
+**Space complexity:** O(1) auxiliary space.
+
+### 3886. Sum of Sortable Integers
+
+[Original LeetCode question](https://leetcode.com/problems/sum-of-sortable-integers/description/) · [View my Python solution](solutions/3886_sum_of_sortable_integers.py)
+
+**Question:** For each positive divisor `k` of `n = len(nums)`, split the array into consecutive blocks of length `k`. Each block may be cyclically rotated independently, but elements cannot move between blocks. Return the sum of all `k` values that allow the entire array to become non-decreasing.
+
+**My approach:**
+
+I precompute prefix maxima, suffix minima, and counts of adjacent decreases. For each divisor `k`, I check that values on opposite sides of each block boundary are ordered and that every block has at most one circular decrease, so it can be sorted by rotation. I sum the valid divisors, checking divisor pairs only once.
+
+**Time complexity:** O(n + √n + ∑₍k∣n₎ n/k) in the worst case: preprocessing takes O(n), divisor enumeration takes O(√n), and checking a divisor `k` visits at most `n/k` blocks. This is bounded above by O(n log n).  
+**Space complexity:** O(n) for the three precomputed arrays.
