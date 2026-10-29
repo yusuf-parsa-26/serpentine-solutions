@@ -35,6 +35,7 @@ My Python LeetCode solutions, sorted by problem number. Each entry includes a su
 | 189 | [Rotate Array](#189-rotate-array) | [Python](solutions/0189_rotate_array.py) |
 | 206 | [Reverse Linked List](#206-reverse-linked-list) | [Python](solutions/0206_reverse_linked_list.py) |
 | 217 | [Contains Duplicate](#217-contains-duplicate) | [Python](solutions/0217_contains_duplicate.py) |
+| 226 | [Invert Binary Tree](#226-invert-binary-tree) | [Python](solutions/0226_invert_binary_tree.py) |
 | 238 | [Product of Array Except Self](#238-product-of-array-except-self) | [Python](solutions/0238_product_of_array_except_self.py) |
 | 239 | [Sliding Window Maximum](#239-sliding-window-maximum) | [Python](solutions/0239_sliding_window_maximum.py) |
 | 242 | [Valid Anagram](#242-valid-anagram) | [Python](solutions/0242_valid_anagram.py) |
@@ -461,6 +462,19 @@ I scan the array while storing previously seen values in a set. If a value is al
 
 **Time complexity:** O(n) on average with hash-set operations, where `n` is the array length.  
 **Space complexity:** O(n) in the worst case for the set.
+
+### 226. Invert Binary Tree
+
+[Original LeetCode question](https://leetcode.com/problems/invert-binary-tree/description/) · [View my Python solution](solutions/0226_invert_binary_tree.py)
+
+**Question:** Given the root of a binary tree, invert the tree and return its root. Each node's left and right subtrees are recursively swapped.
+
+**My approach:**
+
+I recursively invert the tree by swapping the left and right child pointers of each node and calling the function on each subtree until reaching the base case of an empty node.
+
+**Time complexity:** O(n), where `n` is the number of nodes in the tree.  
+**Space complexity:** O(h) for the recursion call stack, where `h` is the height of the tree (O(n) in the worst case).
 
 ### 238. Product of Array Except Self
 
